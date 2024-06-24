@@ -42,14 +42,14 @@ Current release info
 Installing fenics-ffc
 =====================
 
-Installing `fenics-ffc` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `fenics-ffc` from the `conda-forge/label/fenics-dev` channel can be achieved by adding `conda-forge/label/fenics-dev` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/fenics-dev
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `fenics-ffc` can be installed with `conda`:
+Once the `conda-forge/label/fenics-dev` channel has been enabled, `fenics-ffc` can be installed with `conda`:
 
 ```
 conda install fenics-ffc
@@ -64,26 +64,26 @@ mamba install fenics-ffc
 It is possible to list all of the versions of `fenics-ffc` available on your platform with `conda`:
 
 ```
-conda search fenics-ffc --channel conda-forge
+conda search fenics-ffc --channel conda-forge/label/fenics-dev
 ```
 
 or with `mamba`:
 
 ```
-mamba search fenics-ffc --channel conda-forge
+mamba search fenics-ffc --channel conda-forge/label/fenics-dev
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search fenics-ffc --channel conda-forge
+mamba repoquery search fenics-ffc --channel conda-forge/label/fenics-dev
 
 # List packages depending on `fenics-ffc`:
-mamba repoquery whoneeds fenics-ffc --channel conda-forge
+mamba repoquery whoneeds fenics-ffc --channel conda-forge/label/fenics-dev
 
 # List dependencies of `fenics-ffc`:
-mamba repoquery depends fenics-ffc --channel conda-forge
+mamba repoquery depends fenics-ffc --channel conda-forge/label/fenics-dev
 ```
 
 
