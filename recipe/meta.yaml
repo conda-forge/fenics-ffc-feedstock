@@ -1,20 +1,22 @@
-{% set version = "2019.1.0" %}
+{% set version = "2019.2.0" %}
+{% set date = "20230719" %}
+{% set commit = "72129fd974f582bb1f7ed96121c3d216665c9ead" %}
 
 package:
   name: fenics-ffc
-  version: {{ version }}
+  version: {{ version }}.dev{{ date }}
 
 source:
-  url: https://bitbucket.org/fenics-project/ffc/downloads/ffc-{{ version }}.tar.gz
-  sha256: 4ff821a234869d8b9aaf8c5d7f617d42f9c134a2529e76c9519b681dff35affd
+  url: https://bitbucket.org/fenics-project/ffc/get/{{ commit }}.tar.gz
+  sha256: 013426e23d0014a459dec697537a48b5173cdec4cdc66dbeb7eaa693120d2600
   patches:
     - ufc-include-path.patch
 
 build:
-  number: 39
+  number: 0
   noarch: python
   script:
-    - {{ PYTHON }} -m pip install . -vv
+    - {{ PYTHON }} -m pip install --no-deps . -vv
     - mkdir -p $PREFIX/include
     - cp ffc/backends/ufc/*.h $PREFIX/include/
 
@@ -25,9 +27,9 @@ requirements:
   run:
     - python >=3.7
     - numpy
-    - fenics-dijitso =={{ version }}
-    - fenics-fiat =={{ version }}
-    - fenics-ufl =={{ version }}
+    - fenics-dijitso ==2019.1.0
+    - fenics-fiat =={{ version }}.dev*
+    - fenics-ufl-legacy ==2022.3.0
 test:
   imports:
     - ffc
