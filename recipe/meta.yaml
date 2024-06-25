@@ -11,9 +11,10 @@ source:
   sha256: 013426e23d0014a459dec697537a48b5173cdec4cdc66dbeb7eaa693120d2600
   patches:
     - ufc-include-path.patch
+    - pr106.patch
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script:
     - {{ PYTHON }} -m pip install --no-deps . -vv
@@ -31,6 +32,8 @@ requirements:
     - fenics-fiat =={{ version }}.dev*
     - fenics-ufl-legacy ==2022.3.0
 test:
+  requires:
+    - pip
   imports:
     - ffc
     - ffc.backends
@@ -42,6 +45,7 @@ test:
     - ffc --help
     - test -f $PREFIX/include/ufc.h
     - test -f $PREFIX/include/ufc_geometry.h
+    - pip check
 
 
 about:
