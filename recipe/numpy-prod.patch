@@ -1,0 +1,60 @@
+From 50f718c1b34ffc0db1b6a771ec96ff75f0c1b203 Mon Sep 17 00:00:00 2001
+From: Remi Delaporte-Mathurin <rdelaportemathurin@gmail.com>
+Date: Thu, 29 Jun 2023 23:25:03 +0000
+Subject: [PATCH 1/2] product to prod in cnodes.py
+
+---
+ ffc/uflacs/language/cnodes.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/ffc/uflacs/language/cnodes.py b/ffc/uflacs/language/cnodes.py
+index a5e68b51..dc794a3f 100644
+--- a/ffc/uflacs/language/cnodes.py
++++ b/ffc/uflacs/language/cnodes.py
+@@ -1319,7 +1319,7 @@ def build_1d_initializer_list(values, formatter, padlen=0, precision=None):
+     if formatter == str:
+         formatter = lambda x, p: str(x)
+     tokens = ["{ "]
+-    if numpy.product(values.shape) > 0:
++    if numpy.prod(values.shape) > 0:
+         sep = ", "
+         fvalues = [formatter(v, precision) for v in values]
+         for v in fvalues[:-1]:
+@@ -1347,7 +1347,7 @@ def build_initializer_lists(values, sizes, level, formatter, padlen=0, precision
+     if formatter == str:
+         formatter = lambda x, p: str(x)
+     values = numpy.asarray(values)
+-    assert numpy.product(values.shape) == numpy.product(sizes)
++    assert numpy.prod(values.shape) == numpy.prod(sizes)
+     assert len(sizes) > 0
+     assert len(values.shape) > 0
+     assert len(sizes) == len(values.shape)
+--
+2.46.2
+
+
+From 72248e0de50faec2db363f7eb185ff100df7ded4 Mon Sep 17 00:00:00 2001
+From: Remi Delaporte-Mathurin <rdelaportemathurin@gmail.com>
+Date: Thu, 29 Jun 2023 23:25:53 +0000
+Subject: [PATCH 2/2] product to prod in quadratureutils.py
+
+---
+ ffc/quadrature/quadratureutils.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/ffc/quadrature/quadratureutils.py b/ffc/quadrature/quadratureutils.py
+index 2018a8c0..e9307362 100644
+--- a/ffc/quadrature/quadratureutils.py
++++ b/ffc/quadrature/quadratureutils.py
+@@ -109,7 +109,7 @@ def flatten_psi_tables(tables, entity_type):
+                             shape = fiat_tables.shape
+                             value_shape = shape[1:-1]
+                             fiat_tables = fiat_tables.reshape((shape[0],
+-                                                               numpy.product(value_shape),
++                                                               numpy.prod(value_shape),
+                                                                shape[-1]))
+
+                         # Transform fiat_tables to a list of tables on
+--
+2.46.2
+
